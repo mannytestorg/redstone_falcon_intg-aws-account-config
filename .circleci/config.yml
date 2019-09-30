@@ -1,0 +1,24 @@
+# (c) Copyright 2019 Hewlett Packard Enterprise Development LP
+#
+version: 2.1
+
+jobs:
+  dummy-check:
+    docker:
+      - image: alpine:3.7
+
+    steps:
+      - checkout
+
+      - run:
+          name: CI check
+          command: |
+            echo "Rubberstamp CI check"
+            echo
+            echo "Workspace contents:"
+            find . -type f -exec ls -l {} \;
+
+workflows:
+  check:
+    jobs:
+      - dummy-check
